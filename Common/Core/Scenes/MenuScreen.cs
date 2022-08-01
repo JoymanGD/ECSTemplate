@@ -7,31 +7,32 @@ using Myra.Graphics2D;
 using Common.Settings;
 using FontStashSharp;
 using System.IO;
+using Common.ECS.Components;
 
 namespace Common.Core.Scenes
 {
     public class MenuScreen : GameScreen
     {
-        private new byBullet Game => (byBullet) base.Game;
-        Desktop Desktop;
+        private Desktop desktop;
 
-        public MenuScreen(byBullet game) : base(game) { }
+        public MenuScreen(ECSGame game) : base(game) { }
 
         public override void LoadContent()
         {
-            MyraEnvironment.Game = GameSettings.Instance.Game;
+            Game.IsMouseVisible = true;
+
+            MyraEnvironment.Game = Game;
 
             var grid = new Grid();
             //grid.ShowGridLines = true;
-            var fontSys = FontSystemFactory.Create(GameSettings.Instance.Game.GraphicsDevice, 400, 400);
-            fontSys.AddFont(File.ReadAllBytes(@"Content/Fonts/NotoSansJP-Light.otf"));
+            var fontBase = new FontBase("Default.otf", 80);
 
             var title = new Label
             {
             GridRow = 0,
             Id = "label",
-            Text = "byBullet",
-            Font = fontSys.GetFont(80),
+            Text = "ECSGame",
+            Font = fontBase.Font,
             TextColor = Color.Cyan,
             HorizontalAlignment = HorizontalAlignment.Center,
             VerticalAlignment = VerticalAlignment.Bottom
@@ -52,13 +53,13 @@ namespace Common.Core.Scenes
             
             button.Click += (s, a) =>
             {
-                ScreenManager.LoadScreen(new TestScreen(Game), new FadeTransition(GraphicsDevice, Color.Black));
+                ScreenManager.LoadScreen(new TestScreen((ECSGame)Game), new FadeTransition(GraphicsDevice, Color.Black));
             };
 
             grid.Widgets.Add(button);
 
-            Desktop = new Desktop();
-            Desktop.Root = grid;
+            desktop = new Desktop();
+            desktop.Root = grid;
 
             // Add it to the desktop
             base.LoadContent();
@@ -72,7 +73,7 @@ namespace Common.Core.Scenes
         public override void Draw(GameTime gameTime)
         {
             GameSettings.Instance.GraphicsDevice.Clear(Color.Black);
-            Desktop.Render();
+            desktop.Render();
         }
     }
 }

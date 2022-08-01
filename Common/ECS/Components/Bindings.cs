@@ -1,6 +1,7 @@
+using System;
 using System.Collections.Generic;
-using System.IO;
-using Newtonsoft.Json.Linq;
+using System.Linq;
+using System.Xml.Linq;
 
 namespace Common.ECS.Components
 {
@@ -8,20 +9,26 @@ namespace Common.ECS.Components
     {
         public Dictionary<string, int> Pairs { get; private set; }
 
-        public Bindings(string _fileName){
-            Pairs = new Dictionary<string, int>();
-            InitializeBindings(_fileName);
+        public Bindings(string fileName)
+        {
+            Pairs = null;
+            InitializeBindings(fileName);
         }
 
-        void InitializeBindings(string _fileName){
-            var json = File.ReadAllText(@".\Content\Json\" + _fileName + ".json");
+        void InitializeBindings(string fileName)
+        {
+            var elements = XElement.Load(@".\Content\Data\Bindings\" + fileName + ".xml").Elements();
+            Pairs = elements.ToDictionary(e => e.Name.LocalName, e=> Convert.ToInt32(e.Value));
+        }
 
-            var objects = JObject.Parse(json);
-            var list = objects.AsJEnumerable();
-            foreach (var item in list)
+        public static Bindings operator +(Bindings a, Bindings b)
+        {
+            foreach (var item in b.Pairs)
             {
-                Pairs.Add(item.First.Path, item.First.Value<int>());
+                a.Pairs.Add(item.Key, item.Value);
             }
+
+            return a;
         }
     }
 }

@@ -1,8 +1,0 @@
-{
-  "runtimeOptions": {
-    "additionalProbingPaths": [
-      "C:\\Users\\joyma\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\joyma\\.nuget\\packages"
-    ]
-  }
-}
