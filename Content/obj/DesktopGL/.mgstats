@@ -1,4 +1,5 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+<<<<<<< HEAD
 "c:/Users/joyma/Desktop/Projects/Monogame/byBullet/Content/Fonts/Default.spritefont","c:/Users/joyma/Desktop/Projects/Monogame/byBullet/Content/bin/DesktopGL/Fonts/Default.xnb","FontDescriptionProcessor","SpriteFontContent",2008,21538,0.1749322
 "c:/Users/joyma/Desktop/Projects/Monogame/byBullet/Content/Models/byBulletMan_v_3.fbx","c:/Users/joyma/Desktop/Projects/Monogame/byBullet/Content/bin/DesktopGL/Models/byBulletMan_v_3.xnb","ModelProcessor","ModelContent",205276,228924,0.3741146
 "c:/Users/joyma/Desktop/Projects/Monogame/byBullet/Content/Models/byBulletMan_v_3_2.fbx","c:/Users/joyma/Desktop/Projects/Monogame/byBullet/Content/bin/DesktopGL/Models/byBulletMan_v_3_2.xnb","ModelProcessor","ModelContent",205276,228924,0.0771423
@@ -6,3 +7,13 @@ Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Siz
 "c:/Users/joyma/Desktop/Projects/Monogame/byBullet/Content/Models/Ground.fbx","c:/Users/joyma/Desktop/Projects/Monogame/byBullet/Content/bin/DesktopGL/Models/Ground.xnb","ModelProcessor","ModelContent",11532,800,0.002121
 "c:/Users/joyma/Desktop/Projects/Monogame/byBullet/Content/Models/Mage.fbx","c:/Users/joyma/Desktop/Projects/Monogame/byBullet/Content/bin/DesktopGL/Models/Mage.xnb","CpuAnimatedModelProcessor","DynamicModelContent",534588,306762,0.2904456
 "c:/Users/joyma/Desktop/Projects/Monogame/byBullet/Content/Models/Mastron.fbx","c:/Users/joyma/Desktop/Projects/Monogame/byBullet/Content/bin/DesktopGL/Models/Mastron.xnb","ModelProcessor","ModelContent",493852,575543,0.0797487
+=======
+"C:/Users/joyma/Desktop/Projects/Monogame/Templates/ECSGame/Content/Data/Bindings/Camera.xml","C:\Users\joyma\Desktop\Projects\Monogame\Templates\ECSGame\Content\bin\DesktopGL\Data/Bindings/Camera.xml","CopyItem","File",251,251,0.0013206
+"C:/Users/joyma/Desktop/Projects/Monogame/Templates/ECSGame/Content/Data/Bindings/Developer.xml","C:\Users\joyma\Desktop\Projects\Monogame\Templates\ECSGame\Content\bin\DesktopGL\Data/Bindings/Developer.xml","CopyItem","File",23,23,0.000588
+"C:/Users/joyma/Desktop/Projects/Monogame/Templates/ECSGame/Content/Data/Bindings/GameSession.xml","C:\Users\joyma\Desktop\Projects\Monogame\Templates\ECSGame\Content\bin\DesktopGL\Data/Bindings/GameSession.xml","CopyItem","File",51,51,0.001493
+"C:/Users/joyma/Desktop/Projects/Monogame/Templates/ECSGame/Content/Data/Bindings/Player.xml","C:\Users\joyma\Desktop\Projects\Monogame\Templates\ECSGame\Content\bin\DesktopGL\Data/Bindings/Player.xml","CopyItem","File",148,148,0.0006424
+"C:/Users/joyma/Desktop/Projects/Monogame/Templates/ECSGame/Content/Fonts/Default.otf","C:\Users\joyma\Desktop\Projects\Monogame\Templates\ECSGame\Content\bin\DesktopGL\Fonts/Default.otf","CopyItem","File",4513716,4513716,0.0027748
+"C:/Users/joyma/Desktop/Projects/Monogame/Templates/ECSGame/Content/Sprites/Background.jpg","C:/Users/joyma/Desktop/Projects/Monogame/Templates/ECSGame/Content/bin/DesktopGL/Sprites/Background.xnb","TextureProcessor","Texture2DContent",360986,3163285,0.1125712
+"C:/Users/joyma/Desktop/Projects/Monogame/Templates/ECSGame/Content/Sprites/Ball.png","C:/Users/joyma/Desktop/Projects/Monogame/Templates/ECSGame/Content/bin/DesktopGL/Sprites/Ball.xnb","TextureProcessor","Texture2DContent",7489,40085,0.0025612
+"C:/Users/joyma/Desktop/Projects/Monogame/Templates/ECSGame/Content/Sprites/Block.png","C:/Users/joyma/Desktop/Projects/Monogame/Templates/ECSGame/Content/bin/DesktopGL/Sprites/Block.xnb","TextureProcessor","Texture2DContent",477,40085,0.0021829
+>>>>>>> 786e78295cb490733e46a8fba3e1ac1615c4bd25

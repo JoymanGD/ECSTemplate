@@ -13,10 +13,9 @@ namespace Common.Core.Scenes
 {
     public class MenuScreen : GameScreen
     {
-        private new byBullet Game => (byBullet) base.Game;
-        Desktop Desktop;
+        private Desktop desktop;
 
-        public MenuScreen(byBullet game) : base(game) { }
+        public MenuScreen(ECSGame game) : base(game) { }
 
         public override void LoadContent()
         {
@@ -34,8 +33,8 @@ namespace Common.Core.Scenes
             {
             GridRow = 0,
             Id = "label",
-            Text = "byBullet",
-            Font = fontSys.GetFont(80),
+            Text = "ECSGame",
+            Font = fontBase.Font,
             TextColor = Color.Cyan,
             HorizontalAlignment = HorizontalAlignment.Center,
             VerticalAlignment = VerticalAlignment.Bottom
@@ -56,13 +55,13 @@ namespace Common.Core.Scenes
             
             button.Click += (s, a) =>
             {
-                ScreenManager.LoadScreen(new TestScreen(Game), new FadeTransition(GraphicsDevice, Color.Black));
+                ScreenManager.LoadScreen(new TestScreen((ECSGame)Game), new FadeTransition(GraphicsDevice, Color.Black));
             };
 
             grid.Widgets.Add(button);
 
-            Desktop = new Desktop();
-            Desktop.Root = grid;
+            desktop = new Desktop();
+            desktop.Root = grid;
 
             
             Desktop.BoundsFetcher += BoundsFetcher;
@@ -86,7 +85,7 @@ namespace Common.Core.Scenes
         public override void Draw(GameTime gameTime)
         {
             GameSettings.Instance.GraphicsDevice.Clear(Color.Black);
-            Desktop.Render();
+            desktop.Render();
         }
     }
 }

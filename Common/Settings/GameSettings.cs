@@ -1,9 +1,7 @@
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Content;
 using Common.Helpers.Patterns;
 using MonoGame.Extended.Screens;
-using DefaultEcs;
+using Ecs = DefaultEcs;
+using Physics = Genbox.VelcroPhysics.Dynamics;
 using DefaultEcs.Threading;
 using FontStashSharp;
 
@@ -15,7 +13,7 @@ namespace Common.Settings
         public GraphicsDeviceManager Graphics;
         public ContentManager ContentManager;
         public Game Game;
-        public World World;
+        public Ecs.World EcsWorld;
         public IParallelRunner MainRunner;
         public ScreenManager ScreenManager;
         public SpriteBatch SpriteBatch;

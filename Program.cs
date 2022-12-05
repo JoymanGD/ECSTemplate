@@ -7,7 +7,7 @@ namespace Common
         [STAThread]
         static void Main()
         {
-            using (var game = new byBullet())
+            using (var game = new ECSGame())
                 game.Run();
         }
     }

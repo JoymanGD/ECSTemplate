@@ -33,13 +33,14 @@ namespace Common.ECS.Components
         public float RotationSpeed;
         private Vector3 position, scale;
         private Quaternion rotation;
+        private float oneRotation;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #region Constructors
 
-        public Transform(Vector3 _position){
-            WorldMatrix = Matrix.Identity;
-            position = _position;
+        public Transform(Vector3 position)
+        {
+            this.position = position;
             rotation = Quaternion.Identity;
             scale = Vector3.One;
             RotationSpeed = 1;
@@ -57,7 +58,7 @@ namespace Common.ECS.Components
 
         public Transform(Vector3 _position, Vector3 _forward){
             WorldMatrix = Matrix.Identity;
-            position = _position;
+            this.position = position;
             rotation = Quaternion.Identity;
             scale = Vector3.One;
             RotationSpeed = 1;
@@ -101,8 +102,9 @@ namespace Common.ECS.Components
                 UpdateWorldMatrix();
         }
 
-        public void Translate(float _x, float _y, float _z){
-            Translate(new Vector3(_x, _y, _z));
+        public void Translate(float x = 0, float y = 0, float z = 0)
+        {
+            Translate(new Vector3(x, y, z));
         }
 
         public void SetPosition(Vector3 _newPosition, bool _updateMatrix = true){
@@ -131,8 +133,12 @@ namespace Common.ECS.Components
             }
         }
 
-        public void Rotate(Vector3 _rotation){
-            Rotate(Quaternion.CreateFromYawPitchRoll(_rotation.X, _rotation.Y, _rotation.Z));
+        public void Rotate(Quaternion rotation, bool updateMatrix = true)
+        {
+            this.rotation *= rotation;
+            
+            if(updateMatrix)
+                UpdateWorldMatrix();
         }
 
         public void RotateSmooth(Vector3 _rotation, float _smoothness){

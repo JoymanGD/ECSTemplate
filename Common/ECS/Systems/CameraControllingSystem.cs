@@ -3,6 +3,7 @@ using DefaultEcs.System;
 using DefaultEcs.Threading;
 using Microsoft.Xna.Framework;
 using Common.ECS.Components;
+using DefaultEcs.Command;
 
 namespace Common.ECS.Systems
 {
@@ -12,14 +13,8 @@ namespace Common.ECS.Systems
     // [With(typeof(Movement))]
     public partial class CameraControllingSystem : AEntitySetSystem<GameTime>
     {
-        private IParallelRunner runner;
-        private World world;
+        private EntityCommandRecorder EntityCommandRecorder = new EntityCommandRecorder();
         
-        public CameraControllingSystem(World _world, IParallelRunner _runner) : base(_world, CreateEntityContainer, null, 0){
-            world = _world;
-            runner = _runner;
-        }
-
         [Update]
         private void Update(ref Camera _camera, ref Transform _transform, ref Controller _controller){
             if(_controller.IsHolding("CameraMoveLeft")){

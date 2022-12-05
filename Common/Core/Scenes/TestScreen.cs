@@ -1,5 +1,3 @@
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Common.Settings;
 using Common.ECS.Components;
 using Common.ECS.Systems;
@@ -12,9 +10,7 @@ namespace Common.Core.Scenes
 {
     public class TestScreen : ECSScreen
     {
-        public TestScreen(byBullet game) : base(game) { }
-
-        public override void LoadContent()
+        public TestScreen(ECSGame game) : base(game)
         {
             // Game.IsMouseVisible = false;
 
@@ -34,6 +30,19 @@ namespace Common.Core.Scenes
 
         public override void SetStartEntities()
         {
+            var gameSession = World.CreateEntity();
+            var gameSessionBindings = new Bindings("GameSession");
+        #if DEBUG
+            gameSessionBindings += new Bindings("Developer");
+            gameSession.Set(new DebugMode());
+        #endif
+            gameSession.Set(gameSessionBindings);
+            gameSession.Set(new Controller());
+            gameSession.Set(new FontBase("Default.otf", 20));
+            gameSession.Set(new ComponentMark<Profiler>());
+            var physicWorld = new PhysicWorld(new Vector2(0, -25));
+            gameSession.Set(physicWorld);
+
             var graphics = GameSettings.Instance.Graphics;
             var effect = Content.Load<Effect>("Effects/TestShader");
 
@@ -101,8 +110,14 @@ namespace Common.Core.Scenes
             return new SequentialSystem<GameTime>(
                 new ControllerRegistrationSystem(World, MainRunner),
                 new InputSystem(World, MainRunner),
+                new CameraControllingSystem(World, MainRunner),
                 new PlayerControllingSystem(World, MainRunner),
-                new MovementSystem(World, MainRunner),
+                new ProfilerControllingSystem(World, MainRunner),
+
+                //changing in world space
+                new FollowingSystem(World, MainRunner),
+                new CameraFollowingZoomSystem(World, MainRunner),
+                new TranslationSystem(World, MainRunner),
                 new RotationSystem(World, MainRunner),
                 new CameraWorldToViewSystem(World, MainRunner),
                 new OrbitalCameraSystem(World, MainRunner),
@@ -123,6 +138,11 @@ namespace Common.Core.Scenes
                 new ModelRenderingSystem(World, MainRunner),
                 new ProfilingSystem(SpriteBatch, World, MainRunner)
             );
+        }
+
+        private void UpdateInput(GameTime gameTime)
+        {
+            GameSettings.Instance.ExtendedStates = new ExtendedStates(MouseExtended.GetState(), KeyboardExtended.GetState());
         }
     }
 }

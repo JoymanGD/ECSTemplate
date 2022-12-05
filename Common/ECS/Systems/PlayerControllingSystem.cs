@@ -1,7 +1,5 @@
 using DefaultEcs;
 using DefaultEcs.System;
-using DefaultEcs.Threading;
-using Microsoft.Xna.Framework;
 using Common.ECS.Components;
 using DefaultEcs.Command;
 
@@ -9,18 +7,10 @@ namespace Common.ECS.Systems
 {
     [With(typeof(Controller))]
     [With(typeof(Player))]
-    
     public partial class PlayerControllingSystem : AEntitySetSystem<GameTime>
     {
-        private IParallelRunner runner;
-        private World world;
         private EntityCommandRecorder EntityCommandRecorder = new EntityCommandRecorder();
         
-        public PlayerControllingSystem(World _world, IParallelRunner _runner) : base(_world, CreateEntityContainer, null, 0){
-            world = _world;
-            runner = _runner;
-        }
-
         [Update]
         private void Update(ref Controller _controller, in Entity _entity){
             Vector3 cameraRight, cameraForward;
